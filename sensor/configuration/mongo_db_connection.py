@@ -2,7 +2,7 @@ import pymongo
 import ssl
 from sensor.constant.database import DATABASE_NAME
 import certifi
-ca= certifi.where()
+#ca= certifi.where()
 class MongoDBClient:
     client = None
 
@@ -10,6 +10,7 @@ class MongoDBClient:
         try:
             if MongoDBClient.client is None:
                 mongo_db_url="mongodb://localhost:27017/"
+                #MongoDBClient.client = pymongo.MongoClient(mongo_db_url, tlsCAFile=certifi.where())
                 MongoDBClient.client = pymongo.MongoClient(mongo_db_url,ssl_cert_reqs=ssl.CERT_NONE)
                 self.client = MongoDBClient.client
                 self.database = self.client[database_name]
